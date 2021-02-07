@@ -1,6 +1,7 @@
-'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 4:51:05 pm'!
-'Description License: MIT'!
-!provides: 'Gemini-Kernel' 1 22!
+'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 10:34:29 pm'!
+'Description Author: Josef Philip Bernhart (jpb)
+License: MIT'!
+!provides: 'Gemini-Kernel' 1 23!
 SystemOrganization addCategory: 'Gemini-Kernel-Tests'!
 SystemOrganization addCategory: 'Gemini-Kernel'!
 
