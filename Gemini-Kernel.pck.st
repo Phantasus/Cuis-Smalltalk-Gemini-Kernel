@@ -1,9 +1,11 @@
-'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 11:00:05 pm'!
+'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 11:03:57 pm'!
 'Description Gemini protocol kernel for retrieval of gemini documents and more.
 
 Author: Josef Philip Bernhart (jpb)
 License: MIT'!
-!provides: 'Gemini-Kernel' 1 26!
+!provides: 'Gemini-Kernel' 1 27!
+!requires: 'WebClient' 1 20 nil!
+!requires: 'URI-Kernel' 1 18 nil!
 SystemOrganization addCategory: 'Gemini-Kernel-Tests'!
 SystemOrganization addCategory: 'Gemini-Kernel'!
 
