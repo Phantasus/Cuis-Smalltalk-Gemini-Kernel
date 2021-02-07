@@ -1,6 +1,9 @@
-'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 10:48:47 pm'!
-'Description License: MIT'!
-!provides: 'Gemini-Kernel' 1 24!
+'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 11:00:05 pm'!
+'Description Gemini protocol kernel for retrieval of gemini documents and more.
+
+Author: Josef Philip Bernhart (jpb)
+License: MIT'!
+!provides: 'Gemini-Kernel' 1 26!
 SystemOrganization addCategory: 'Gemini-Kernel-Tests'!
 SystemOrganization addCategory: 'Gemini-Kernel'!
 
@@ -79,10 +82,10 @@ GeminiStreamer class
 !GeminiDocument commentStamp: '<historical>' prior: 0!
 Represents a document model for the text/gemini mimetype used by the gemini protocol to display pages!
 
-!GeminiLinkAction methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 22:45:13'!
+!GeminiLinkAction methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 22:58:55'!
 actOnClickFor: model
 	| newClient response |
-	self halt.
+	
 	newClient _ linkUrl asGeminiClient.
 	response _ newClient next.
 	response openInWorld.
