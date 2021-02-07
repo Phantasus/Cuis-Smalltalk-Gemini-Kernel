@@ -1,7 +1,6 @@
-'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 10:34:29 pm'!
-'Description Author: Josef Philip Bernhart (jpb)
-License: MIT'!
-!provides: 'Gemini-Kernel' 1 23!
+'From Cuis 5.0 [latest update: #4526] on 7 February 2021 at 10:48:47 pm'!
+'Description License: MIT'!
+!provides: 'Gemini-Kernel' 1 24!
 SystemOrganization addCategory: 'Gemini-Kernel-Tests'!
 SystemOrganization addCategory: 'Gemini-Kernel'!
 
@@ -80,9 +79,10 @@ GeminiStreamer class
 !GeminiDocument commentStamp: '<historical>' prior: 0!
 Represents a document model for the text/gemini mimetype used by the gemini protocol to display pages!
 
-!GeminiLinkAction methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 16:38:55'!
+!GeminiLinkAction methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 22:45:13'!
 actOnClickFor: model
 	| newClient response |
+	self halt.
 	newClient _ linkUrl asGeminiClient.
 	response _ newClient next.
 	response openInWorld.
@@ -250,7 +250,7 @@ parseLine: newLine
 	
 	! !
 
-!GeminiDocument methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 16:32:34'!
+!GeminiDocument methodsFor: 'as yet unclassified' stamp: 'jpb 2/7/2021 22:44:08'!
 parseLinkLine: newLine
 	| linkLabel linkUri readStream whiteSpace newText newLink |	
 	
@@ -278,13 +278,17 @@ parseLinkLine: newLine
 		[ readStream atEnd ]
 			whileFalse: [ linkStream nextPut: readStream next ]].
 		
-	newText _ (linkLabel , String newLineString ) asText.
 	newLink _ GeminiLinkAction new.
 	
 	linkUri _ linkUri asUri.
 	linkUri isRelative ifTrue: [ linkUri _ baseUrl join: linkUri ].
 	
 	newLink target: linkUri.	
+	
+	newText _ linkLabel size > 0
+		ifTrue: [ (linkLabel , String newLineString ) asText ]
+		ifFalse: [ (linkUri asString , String newLineString ) asText ].
+	
 	newText addAttribute: newLink.
 	
 	^newText! !
@@ -343,13 +347,15 @@ at: fieldName put: newValue
 body
 	^body! !
 
-!GeminiResponse methodsFor: 'accessing' stamp: 'jpb 2/7/2021 16:45:18'!
+!GeminiResponse methodsFor: 'accessing' stamp: 'jpb 2/7/2021 22:47:49'!
 bodyParsed
 	'text/gemini' = self mimeType
 		ifTrue: [
 			| newDocument | newDocument _ GeminiDocument withAll: body.
 			newDocument _ newDocument baseUrl: requestUrl copy.
-			^newDocument ]! !
+			^newDocument ].
+		
+	^nil! !
 
 !GeminiResponse methodsFor: 'accessing' stamp: 'jpb 2/7/2021 01:47:39'!
 mimeType
